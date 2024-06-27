@@ -1,0 +1,55 @@
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        cols = defaultdict(set)
+        rows = defaultdict(set)
+        squares = defaultdict(set)  # key = (r /3, c /3)
+
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == ".":
+                    continue
+                if (
+                    board[r][c] in rows[r]
+                    or board[r][c] in cols[c]
+                    or board[r][c] in squares[(r // 3, c // 3)]
+                ):
+                    return False
+                cols[c].add(board[r][c])
+                rows[r].add(board[r][c])
+                board[r//3, c//3].add(board[r][c])
+        #         squares[(r // 3, c // 3)].add(board[r][c])
+
+        # return True
+
+
+        # for i in board:
+        #     if len(i) != len(set((i))):
+        #         print("measao")
+        #         print(i)
+        #         return False
+
+        # flatList = [x for board in xs for x in xs]
+        # for i in range(9):
+        #     seen = set()
+        #     for j in range(0, len(flatlist), 10):
+        #         if flatList[j] in seen:
+        #             print("mea")
+        #             return 0
+        #         seen.add(flatList[j])
+
+        # index = 0
+        # for c in range(9):
+        #     cubedList = []
+        #     for b in range(3):
+        #         for i in range(3):
+        #             cubedList.append(index)
+        #             index += 1
+        #         index += 10
+        #     if len(set1) != len(set((nums))):
+        #         print("meao")
+        #         return False
+
+        # return 1
+
+        # # 1,2,3,11,12,13,21,22,23
